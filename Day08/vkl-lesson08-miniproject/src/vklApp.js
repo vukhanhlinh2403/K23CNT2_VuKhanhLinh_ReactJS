@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import VklControl from './components/vklControl'
 import VklStudentList from './components/vklStudentList'
 import VklForm from './components/vklForm'
-import vklStudent from './components/vklStudent';
 
 class vklApp extends Component {
   constructor(prpos) {
