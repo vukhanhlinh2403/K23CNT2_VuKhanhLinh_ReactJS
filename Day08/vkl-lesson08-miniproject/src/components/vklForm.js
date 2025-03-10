@@ -1,6 +1,56 @@
 import React, { Component } from 'react'
 
 class vklForm extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+          vklStudent: this.props.rendervklStudent || {
+              vklId: '',
+              vklName: '',
+              vklAge: '',
+              vklGender: '',
+              vklBirthday: '',
+              vklBirthPlace: '',
+              vklAddress: ''
+          }
+      };
+  }
+
+  componentDidUpdate(prevProps) {
+      if (prevProps.rendervklStudent !== this.props.rendervklStudent) {
+          this.setState({ vklStudent: this.props.rendervklStudent });
+      }
+  }
+
+  handleChange = (e) => {
+      const { name, value } = e.target;
+      this.setState({
+          vklStudent: {
+              ...this.state.vklStudent,
+              [name]: value
+          }
+      });
+  }
+
+  handleSubmit = (e) => {
+      e.preventDefault();
+      if (this.props.isEdit) {
+          this.props.onvklHandleEdit(this.state.vklStudent);
+      } else {
+          this.props.onvklHandleAdd(this.state.vklStudent);
+      }
+      this.setState({
+          vklStudent: {
+              vklId: '',
+              vklName: '',
+              vklAge: '',
+              vklGender: '',
+              vklBirthday: '',
+              vklBirthPlace: '',
+              vklAddress: ''
+          }
+      });
+  }
   render() {
     let {rendervklStudent} = this.props;
     return (
@@ -29,7 +79,8 @@ class vklForm extends Component {
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Giới tính</label>
               <div className="col-sm-9">
-                <select className="form-control" value={rendervklStudent.vklGender} >
+                <select className="form-control" name="vklGender" value={vklGender} onChange={this.handleChange} >
+                  <option>Chọn giới tính</option>
                   <option>Nam</option>
                   <option>Nữ</option>
                 </select>

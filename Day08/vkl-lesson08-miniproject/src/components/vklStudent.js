@@ -9,6 +9,18 @@ class vklStudent extends Component {
         //chuyen len vklStudentList
         this.props.onvklHandleView(vklStudent);
     }
+
+     // Hàm xử lý chức năng xóa sinh viên
+     vklHandleDelete = (vklID) => {
+        // Chuyển lên NvkStudentList
+        this.props.onvklHandleDelete(vklID);
+    }
+
+     // Hàm xử lý chuyển sang chế độ sửa
+     vklHandleEdit = (vklStudent) => {
+        // Chuyển lên NvkStudentList
+        this.props.onvklHandleEditMode(vklStudent);
+    }
   render() {
     //lay doi tuong du lieu  chuyen tu vklStudentList
     let {rendervklStudent, key} = this.props;

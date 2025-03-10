@@ -6,7 +6,17 @@ class vklControl extends Component {
         <div className="card-header">
         <div className="row">
           <div className="col-3 ">
-            <button type="button" className="btn btn-primary btn-icon-text">
+            <button type="button" className="btn btn-primary btn-icon-text"
+                onClick={() => this.props.onvklHandleAdd({ // Khi click vào button thêm mới sinh viên, nó sẽ tự động tạo random một MSV bất kì 
+                  vklId: 'SV' + (Math.random() * 1000).toFixed(0),
+                  vklName: '',
+                  vklAge: '',
+                  vklGender: '',
+                  vklBirthday: '',
+                  vklBirthPlace: '',
+                  vklAddress: ''
+              })}
+            >
               Thêm mới sinh viên
             </button>
           </div>

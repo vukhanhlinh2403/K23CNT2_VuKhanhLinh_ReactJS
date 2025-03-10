@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import VklStudent from './vklStudent'
-import vklStudent from './vklStudent';
+import VklStudent from './vklStudent';
 
 class vklStudentList extends Component {
     constructor(props){
@@ -12,13 +12,28 @@ class vklStudentList extends Component {
         // chuyen du lieu len vklApp
         this.props.onvklHandleView(vklStudent);
     }
+
+    // Hàm xử lý chức năng xóa sinh viên
+    vklHandleDelete = (vklID) => {
+        // Chuyển dữ liệu lên NvkApp
+        this.props.onvklHandleDelete(vklID);
+    };
+
+     // Hàm xử lý chuyển sang chế độ sửa
+     vklHandleEditMode = (vklStudent) => {
+        // Chuyển dữ liệu lên NvkApp
+        this.props.onvklHandleEditMode(vklStudent);
+    };
     render() {
         // lay du lieu cho props tu vklApp xuong
         let {rendervklStudents} = this.props;
         console.log("List:",rendervklStudents);
         // chuyen du lieu vao vklStudent de hien thi 
         let vklElementStudent = rendervklStudents.map((vklItem,index)=>{
-            return <VklStudent key={index} rendervklStudent={vklItem} onvklHandleView={this.vklHandleView} />
+            return <VklStudent key={index} index={index} rendervklStudent={vklItem} onvklHandleView={this.vklHandleView} 
+                onvklHandleDelete={this.vklHandleDelete} 
+                onvklHandleEditMode={this.vklHandleEditMode}
+            />
         })
         return (
             <div className="card-body">
